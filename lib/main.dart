@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'browse.dart';
+import 'search.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const Infocontact(contactName: "IW"), // Fix: Pass a contact name
-      home: const browseitem(),
+      home: const SearchPage(),
     );
   }
 }
