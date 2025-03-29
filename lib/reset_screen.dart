@@ -1,19 +1,21 @@
-import 'package:final_project/forgot_screen.dart';
+import 'package:final_project/signin_screen.dart';
+import 'package:final_project/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/signinotp_screen.dart';
 import 'package:final_project/signup_screen.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class ResetScreen extends StatefulWidget {
+  const ResetScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<ResetScreen> createState() => _ResetScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
-  final TextEditingController _emailPhoneController = TextEditingController();
+class _ResetScreenState extends State<ResetScreen> {
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _retypePasswordController =
+      TextEditingController();
   bool _obscurePassword = true;
+  bool _obscureRetypePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       top: 80.0,
                     ), // Adjust this value for spacing
                     child: const Text(
-                      "LET'S SIGN IN",
+                      "LET'S RESET",
                       style: TextStyle(
                         fontSize: 25, // Set font size
                         fontWeight: FontWeight.bold, // Make the text bold
@@ -56,21 +58,15 @@ class _SigninScreenState extends State<SigninScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 280),
-                  TextField(
-                    controller: _emailPhoneController,
-                    decoration: InputDecoration(
-                      labelText: 'Phone or Email',
-                      labelStyle: TextStyle(color: Colors.black),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      prefixIcon: Icon(Icons.mail),
+                  const SizedBox(height: 250),
+                  const Text(
+                    'Please Enter Your New Password',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
-                    keyboardType: TextInputType.emailAddress,
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
                   TextField(
@@ -101,6 +97,34 @@ class _SigninScreenState extends State<SigninScreen> {
                     obscureText: _obscurePassword,
                   ),
                   const SizedBox(height: 10),
+                  TextField(
+                    controller: _retypePasswordController,
+                    decoration: InputDecoration(
+                      labelText: 'Retype Password',
+                      labelStyle: const TextStyle(color: Colors.black),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      prefixIcon: const Icon(Icons.key),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureRetypePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureRetypePassword = !_obscureRetypePassword;
+                          });
+                        },
+                      ),
+                    ),
+                    obscureText: _obscureRetypePassword,
+                  ),
+                  const SizedBox(height: 10),
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -108,12 +132,12 @@ class _SigninScreenState extends State<SigninScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ForgotScreen(),
+                            builder: (context) => SigninScreen(),
                           ),
                         );
                       },
                       child: const Text(
-                        'Forgot password?',
+                        'back to login',
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
@@ -121,22 +145,10 @@ class _SigninScreenState extends State<SigninScreen> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      if (_emailPhoneController.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please enter email or phone number'),
-                          ),
-                        );
-                        return;
-                      }
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (context) => SigninotpScreen(
-                                emailOrPhone: _emailPhoneController.text,
-                              ),
+                          builder: (context) => WelcomeScreen(),
                         ),
                       );
                     },
@@ -147,7 +159,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       shadowColor: Colors.black,
                     ),
                     child: Text(
-                      'SIGN IN',
+                      'RESET',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
