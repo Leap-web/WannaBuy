@@ -1,3 +1,4 @@
+import 'package:final_project/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'search.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const Infocontact(contactName: "IW"), // Fix: Pass a contact name
-      home: const SearchPage(),
+      home: const browseitem(),
     );
   }
 }
