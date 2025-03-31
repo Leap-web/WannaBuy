@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'addtocart.dart';
 import 'package:final_project/detail.dart';
@@ -7,6 +6,8 @@ import 'browse.dart';
 import 'detail.dart';
 import 'orderhistory.dart';
 import 'package:final_project/welcome_screen.dart';
+import 'package:flutter/material.dart';
+import 'search.dart';
 import 'package:final_project/invoice.dart';
 
 void main() {
@@ -27,10 +28,14 @@ class MyApp extends StatelessWidget {
         fontFamily: "Lato",
         useMaterial3: true,
       ),
+<<<<<<< HEAD
 
       home: WelcomeScreen(),
 
 
+=======
+      home: const BrowseItem(),
+>>>>>>> 9aff746bbd88b71ab5a3b7b0d875b377838e93c3
     );
   }
 }

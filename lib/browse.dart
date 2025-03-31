@@ -13,7 +13,7 @@ class _BrowseItemState extends State<BrowseItem> {
   // List of all products
   List<Map<String, String>> allProducts = [
     {
-      "name": "Laptop Pro 2025",
+      "name": "Asus Laptop",
       "price": "\$999",
       "image": "assets/images/laptop.png",
     },
@@ -33,21 +33,31 @@ class _BrowseItemState extends State<BrowseItem> {
       "image": "assets/images/earphone.png",
     },
     {
-      "name": "Dell",
-      "price": "\$1399",
+      "name": "Dell Laptop",
+      "price": "\$1199",
       "image": "assets/images/dell.png",
     },
     {
-      "name": "TUF Gaming F15",
+      "name": "Lenovo Laptop",
       "price": "\$1099",
-      "image": "assets/images/tuf.png",
+      "image": "assets/images/lenovo.png",
+    },
+    {
+      "name": "iPhone 14",
+      "price": "\$999",
+      "image": "assets/images/iphone14.png",
+    },
+    {
+      "name": "Apple AirPods Max",
+      "price": "\$549",
+      "image": "assets/images/airpod.png",
     },
   ];
 
   // Updated allProducts list with details
   List<Map<String, dynamic>> productDetials = [
     {
-      "name": "Laptop Pro 2025",
+      "name": "Asus Laptop",
       "price": "\$999",
       "image": "assets/images/laptop.png",
       "details": {
@@ -87,45 +97,91 @@ class _BrowseItemState extends State<BrowseItem> {
       },
     },
     {
-      "name": "TUF Gaming F15",
-      "price": "\$1,099",
-      "image": "assets/images/tuf_gaming.png",
+      "name": "Apple AirPods Max",
+      "price": "\$549",
+      "image": "assets/images/airpods_max.png",
       "details": {
-        "CPU": "Intel Core i7-12700H",
-        "GPU": "NVIDIA GeForce RTX 3060",
-        "Memory": "16GB DDR4 RAM",
+        "Chip": "Apple H1 chip (per ear cup)",
+        "Audio": "High-fidelity audio with active noise cancellation",
+        "NoiseCancellation": "Active Noise Cancellation & Transparency Mode",
+        "BatteryLife":
+            "Up to 20 hours of listening time with Active Noise Cancellation and spatial audio",
+        "ChargingCase": "Smart Case for battery preservation",
+        "Weight": "384.8 grams",
+        "HeadphoneType": "Over-Ear",
+        "Connectivity": "Bluetooth 5.0",
+        "Microphone":
+            "Nine microphones for noise cancellation and voice pickup",
+        "Controls": "Digital crown for volume control, play/pause, skip tracks",
+        "AudioFormat": "Spatial audio with dynamic head tracking",
+        "ColorOptions": "Space Gray, Silver, Sky Blue, Green, Pink",
+        "AdditionalFeatures":
+            "Automatic switching between devices, Hey Siri functionality",
+      },
+    },
+
+    {
+      "name": "Lenovo Laptop",
+      "price": "\$1799",
+      "image": "assets/images/lenovo_x1_carbon.png",
+      "details": {
+        "CPU": "Intel Core i7-1265U",
+        "GPU": "Intel Iris Xe Graphics",
+        "Memory": "16GB LPDDR5 RAM",
         "Storage": "512GB SSD",
         "NeuralEngine": "N/A",
-        "Display": "15.6-inch Full HD 144Hz",
-        "Camera": "720p HD webcam",
-        "ChargingPort": "USB-C Charging",
-        "USBPorts": "Two USB-A 3.2, One USB-C, One USB 3.2 Type-C",
+        "Display": "14-inch WQXGA (2560 x 1600) IPS display",
+        "Camera": "1080p HD camera with IR",
+        "ChargingPort": "USB-C with Power Delivery",
+        "USBPorts": "Two Thunderbolt 4 ports, One USB 3.2 Type-A",
         "ExternalDisplay": "Supports up to two external displays",
-        "Keyboard": "RGB Backlit Keyboard",
-        "Trackpad": "Precision Trackpad",
-        "PowerAdapter": "200W Power Adapter",
+        "Keyboard": "Backlit keyboard with TrackPoint",
+        "Trackpad": "Precision touchpad with multi-touch support",
+        "PowerAdapter": "65W USB-C Power Adapter",
+      },
+    },
+
+    {
+      "name": "Dell Laptop",
+      "price": "\$1199",
+      "image": "assets/images/dell_xps13.png",
+      "details": {
+        "CPU": "Intel Core i7-1360P",
+        "GPU": "Intel Iris Xe Graphics",
+        "Memory": "16GB LPDDR5 RAM",
+        "Storage": "512GB SSD",
+        "NeuralEngine": "N/A",
+        "Display": "13.4-inch FHD+ (1920 x 1200) InfinityEdge display",
+        "Camera": "720p HD webcam",
+        "ChargingPort": "USB-C charging",
+        "USBPorts": "Two Thunderbolt 4 ports",
+        "ExternalDisplay": "Supports up to two external displays",
+        "Keyboard": "Backlit Keyboard with Fingerprint Reader",
+        "Trackpad": "Precision Glass Touchpad",
+        "PowerAdapter": "45W USB-C Power Adapter",
       },
     },
     {
-      "name": "MacBook Pro M4",
-      "price": "\$1,399",
-      "image": "assets/images/m4.png",
+      "name": "iPhone 14",
+      "price": "\$999",
+      "image": "assets/images/iphone14.png",
       "details": {
-        "CPU": "Apple M4 Chip",
-        "GPU": "10-core GPU",
-        "Memory": "8GB Unified Memory",
-        "Storage": "256GB SSD",
+        "CPU": "A15 Bionic chip",
+        "GPU": "5-core GPU",
+        "Memory": "6GB RAM",
+        "Storage": "128GB / 256GB / 512GB",
         "NeuralEngine": "16-core Neural Engine",
-        "Display": "13.6-inch Liquid Retina display",
-        "Camera": "1080p FaceTime HD camera",
-        "ChargingPort": "MagSafe 3 charging port",
-        "USBPorts": "Two Thunderbolt / USB 4 ports",
-        "ExternalDisplay": "Supports one external display",
-        "Keyboard": "Magic Keyboard with Touch ID",
-        "Trackpad": "Force Touch trackpad",
-        "PowerAdapter": "30W USB-C Power Adapter",
+        "Display": "6.1-inch Super Retina XDR display",
+        "Camera": "12MP Main, 12MP Ultra Wide",
+        "ChargingPort": "Lightning port",
+        "USBPorts": "N/A",
+        "ExternalDisplay": "AirPlay for wireless display",
+        "Keyboard": "N/A (iOS virtual keyboard)",
+        "Trackpad": "N/A (Touchscreen)",
+        "PowerAdapter": "20W USB-C Power Adapter",
       },
     },
+
     {
       "name": "Wireless Headset",
       "price": "\$199",
@@ -208,55 +264,50 @@ class _BrowseItemState extends State<BrowseItem> {
 
   // Function to create rows with two items per row
   List<Widget> buildProductRows() {
-    List<Widget> rows = [];
-    for (int i = 0; i < filteredProducts.length; i += 2) {
-      int nextIndex =
-          (i + 1 < filteredProducts.length)
-              ? i + 1
-              : i; // Avoid out-of-bounds error
+  List<Widget> rows = [];
+  for (int i = 0; i < filteredProducts.length; i += 2) {
+    int nextIndex = (i + 1 < filteredProducts.length) ? i + 1 : i; 
 
-      rows.add(
-        Padding(
-          padding: const EdgeInsets.only(bottom: 20), // Adds space between rows
-          child: Row(
-            mainAxisAlignment:
-                MainAxisAlignment.start, // Align products to start
-            crossAxisAlignment:
-                CrossAxisAlignment.start, // Align items vertically
-            children: [
-              Expanded(
+    rows.add(
+      Padding(
+        padding: const EdgeInsets.only(bottom: 20), // Space between rows
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Evenly space the boxes
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10), // Add horizontal spacing
                 child: ProductBox(
                   rating: 4,
                   imagePath: filteredProducts[i]["image"]!,
                   modelName: filteredProducts[i]["name"]!,
                   details: getProductDetails(filteredProducts[i]["name"]!),
-                  price: double.parse(
-                    filteredProducts[i]["price"]!.substring(1),
-                  ),
+                  price: double.parse(filteredProducts[i]["price"]!.substring(1)),
                 ),
               ),
-              // Check if there is a second item to display
-              if (i + 1 < filteredProducts.length)
-                Expanded(
+            ),
+            if (i + 1 < filteredProducts.length)
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10), // Add horizontal spacing
                   child: ProductBox(
                     rating: 4,
                     imagePath: filteredProducts[nextIndex]["image"]!,
                     modelName: filteredProducts[nextIndex]["name"]!,
-                    details: getProductDetails(
-                      filteredProducts[nextIndex]["name"]!,
-                    ),
-                    price: double.parse(
-                      filteredProducts[nextIndex]["price"]!.substring(1),
-                    ),
+                    details: getProductDetails(filteredProducts[nextIndex]["name"]!),
+                    price: double.parse(filteredProducts[nextIndex]["price"]!.substring(1)),
                   ),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
-      );
-    }
-    return rows;
+      ),
+    );
   }
+  return rows;
+}
+
 
   // Function to handle category selection
   void _onCategoryTap(String category) {
@@ -274,7 +325,7 @@ class _BrowseItemState extends State<BrowseItem> {
         filteredProducts =
             allProducts.where((product) {
               return product["name"]!.toLowerCase().contains('headset') ||
-                  product["name"]!.toLowerCase().contains('earphone');
+                  product["name"]!.toLowerCase().contains('airpod');
             }).toList();
       } else {
         filteredProducts =
