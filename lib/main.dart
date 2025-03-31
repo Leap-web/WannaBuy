@@ -1,5 +1,8 @@
+import 'package:final_project/detail.dart';
 import 'package:flutter/material.dart';
 import 'browse.dart';
+import 'detail.dart';
+import 'orderhistory.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const Infocontact(contactName: "IW"), // Fix: Pass a contact name
-      home: const browseitem(),
+      home: const BrowseItem(),
     );
   }
 }
