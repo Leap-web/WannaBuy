@@ -127,45 +127,29 @@ class _CartItemTileState extends State<CartItemTile> {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 10)],
       ),
-    
       child: Column(
         children: [
-
-
-          // Product Row
+          // Product Row: Image on left, description on right.
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Product Image
-             
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  'assets/images/m4.png',
+                  width: 100, // Adjust width as needed
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
+              ),
               SizedBox(width: 10),
 
-              // Product Info
+              // Product Info (description)
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                        
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.grey, width: 1),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            'assets/images/headset.jpg',
-                            width: 250,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 30,),
                     Text(
                       "Apple 16-inch MacBook Pro M2 (2023 - Latest)",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -184,8 +168,11 @@ class _CartItemTileState extends State<CartItemTile> {
                 ),
               ),
 
-              // Delete Button
-              
+              // Optionally, you can include a Delete button to the far right.
+              IconButton(
+                icon: Icon(Icons.delete, color: Colors.red),
+                onPressed: () {},
+              ),
             ],
           ),
           SizedBox(height: 10),
@@ -194,19 +181,10 @@ class _CartItemTileState extends State<CartItemTile> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-         
-              // Quantity Selector
+              // Quantity Selector with delete moved up (if desired)
               Row(
                 children: [
-                   IconButton(
-                icon: Icon(Icons.delete, color: Colors.red),
-                onPressed: () {},
-                ),
-                 
-                ],
-              ),
-              const SizedBox(width: 10,),
-               IconButton(
+                  IconButton(
                     icon: Icon(Icons.remove, color: Colors.black),
                     onPressed: _decrementQuantity,
                   ),
@@ -218,13 +196,13 @@ class _CartItemTileState extends State<CartItemTile> {
                     icon: Icon(Icons.add, color: Colors.black),
                     onPressed: _incrementQuantity,
                   ),
-                 const SizedBox(width: 5,),
-              // Save for Later
+                ],
+              ),
+              SizedBox(width: 10),
+              // Save for Later Button
               TextButton(
-                
                 onPressed: () {},
                 child: Text(
-                  
                   "Save For Later",
                   style: TextStyle(color: Colors.black),
                 ),
