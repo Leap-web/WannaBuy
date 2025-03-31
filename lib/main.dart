@@ -4,8 +4,12 @@ import 'browse.dart';
 import 'detail.dart';
 import 'orderhistory.dart';
 import 'package:final_project/welcome_screen.dart';
+<<<<<<< HEAD
 import 'package:flutter/material.dart';
 import 'search.dart';
+=======
+import 'package:final_project/invoice.dart';
+>>>>>>> 362501c3b512b2bf0a820024b6d73b116eca42c5
 
 void main() {
   runApp(const MyApp());
@@ -25,10 +29,14 @@ class MyApp extends StatelessWidget {
         fontFamily: "Lato",
         useMaterial3: true,
       ),
+<<<<<<< HEAD
       // home: const SearchPage(),
       // home: const Infocontact(contactName: "IW"), // Fix: Pass a contact name
       home: const BrowseItem(),
       // home: const WelcomeScreen(),
+=======
+      home:  InvoiceScreen(),
+>>>>>>> 362501c3b512b2bf0a820024b6d73b116eca42c5
       
     );
   }
