@@ -87,6 +87,8 @@ flutter:
     - assets/images/iphone14.png
     - assets/images/airpod.png
     - assets/images/msi.png
+    - assets/images/image.png
+    - assets/images/profile_picture.jpg
     - assets/icons/
     - assets/fonts/
 
