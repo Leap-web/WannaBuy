@@ -7,7 +7,7 @@ import 'browse.dart';
 import 'detail.dart';
 import 'orderhistory.dart';
 import 'package:final_project/welcome_screen.dart';
-import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,12 @@ class MyApp extends StatelessWidget {
         fontFamily: "Lato",
         useMaterial3: true,
       ),
+<<<<<<< HEAD
       home: AddToCart(),
+=======
+      home: const WelcomeScreen(),
+      
+>>>>>>> 17f2a0eb19c2c1aa465b2dfff4b06c4a3592196a
     );
   }
 }
