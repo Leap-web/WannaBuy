@@ -74,6 +74,8 @@ flutter:
     - assets/images/earphone.png
     - assets/images/msi.png
     - assets/images/tuf.png
+    - assets/images/laptop.png
+    - assets/images/phone.png
     - assets/icons/
     - assets/fonts/
 
