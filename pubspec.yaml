@@ -83,6 +83,10 @@ flutter:
     - assets/images/tuf.png
     - assets/images/laptop.png
     - assets/images/phone.png
+    - assets/images/lenovo.png
+    - assets/images/iphone14.png
+    - assets/images/airpod.png
+    - assets/images/msi.png
     - assets/icons/
     - assets/fonts/
 
