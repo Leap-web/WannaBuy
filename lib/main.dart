@@ -24,7 +24,13 @@ class MyApp extends StatelessWidget {
         fontFamily: "Lato",
         useMaterial3: true,
       ),
+<<<<<<< HEAD
       home: const BrowseItem(),
+=======
+      // home: const Infocontact(contactName: "IW"), // Fix: Pass a contact name
+      home: const BrowseItem(),
+      // home: const WelcomeScreen(),
+>>>>>>> d6ad10013339998f3735cf6affb74fad921b2d79
       
     );
   }
