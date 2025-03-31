@@ -27,16 +27,10 @@ class MyApp extends StatelessWidget {
         fontFamily: "Lato",
         useMaterial3: true,
       ),
-<<<<<<< HEAD
-<<<<<<< HEAD
-      home: AddToCart(),
-=======
-      home: const WelcomeScreen(),
-=======
-      home:  InvoiceScreen(),
->>>>>>> 362501c3b512b2bf0a820024b6d73b116eca42c5
-      
->>>>>>> 17f2a0eb19c2c1aa465b2dfff4b06c4a3592196a
+
+      home: WelcomeScreen(),
+
+
     );
   }
 }
