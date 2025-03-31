@@ -1,6 +1,6 @@
-import 'package:final_project/signin_screen.dart';
+
 import 'package:flutter/material.dart';
-import 'search.dart';
+import 'addtocart.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const Infocontact(contactName: "IW"), // Fix: Pass a contact name
-      home: const browseitem(),
+      home: AddToCart(),
     );
   }
 }
