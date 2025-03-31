@@ -79,7 +79,8 @@ class _AddToCartState extends State<AddToCart> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             padding: EdgeInsets.symmetric(vertical: 15),
           ),
           onPressed: () {},
@@ -197,16 +198,22 @@ class _CartItemTileState extends State<CartItemTile> {
                     onPressed: _incrementQuantity,
                   ),
                 ],
-              ),
-              SizedBox(width: 10),
-              // Save for Later Button
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Save For Later",
-                  style: TextStyle(color: Colors.black),
+                        ),
+                        SizedBox(
+            width: 130, // set your desired width
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
                 ),
+                padding: EdgeInsets.symmetric(vertical: 20),
               ),
+              onPressed: () {},
+              child: Text("Save for later",
+              style: TextStyle(color: Colors.white),),
+            ),
+          )
             ],
           ),
         ],
@@ -222,19 +229,31 @@ class SuggestedProducts extends StatelessWidget {
       "name": "IMAC Pro M3",
       "price": "\$1,459",
       "image":
-          "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/imac-24-hero-202310?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1697130137988",
+          "assets/images/m4.png",
     },
     {
       "name": "TUF Gaming F15",
       "price": "\$669",
       "image":
-          "https://www.asus.com/media/Odin/Websites/global/ProductLine/20210122023247.jpg",
+          "assets/images/tuf.png",
     },
     {
       "name": "IMAC Pro M3",
       "price": "\$830",
       "image":
-          "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/imac-24-hero-202310?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1697130137988",
+          "assets/images/tuf.png",
+    },
+    {
+      "name": "IMAC Pro M3",
+      "price": "\$830",
+      "image":
+          "assets/images/tuf.png",
+    },
+    {
+      "name": "IMAC Pro M3",
+      "price": "\$830",
+      "image":
+          "assets/images/tuf.png",
     },
   ];
 
@@ -250,6 +269,7 @@ class SuggestedProducts extends StatelessWidget {
         SizedBox(height: 10),
         Container(
           height: 120,
+          width: 1500,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: products.length,
@@ -271,6 +291,100 @@ class SuggestedProducts extends StatelessWidget {
                         child: Image.network(
                           product["image"]!,
                           fit: BoxFit.cover,
+                          
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      product["name"]!,
+                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      product["price"]!,
+                      style: TextStyle(color: Colors.red, fontSize: 12),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+class Productsuggest extends StatelessWidget {
+  final List<Map<String, String>> products = [
+    {
+      "name": "IMAC Pro M3",
+      "price": "\$1,459",
+      "image":
+          "assets/images/m4.png",
+    },
+    {
+      "name": "TUF Gaming F15",
+      "price": "\$669",
+      "image":
+          "assets/images/tuf.png",
+    },
+    {
+      "name": "IMAC Pro M3",
+      "price": "\$830",
+      "image":
+          "assets/images/tuf.png",
+    },
+    {
+      "name": "IMAC Pro M3",
+      "price": "\$830",
+      "image":
+          "assets/images/tuf.png",
+    },
+    {
+      "name": "IMAC Pro M3",
+      "price": "\$830",
+      "image":
+          "assets/images/tuf.png",
+    },
+  ];
+
+   @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Pair with your cart",
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(height: 10),
+        Container(
+          height: 120,
+          width: 1500,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              final product = products[index];
+              return Container(
+                width: 100,
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 5)],
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          product["image"]!,
+                          fit: BoxFit.cover,
+                          
                         ),
                       ),
                     ),
