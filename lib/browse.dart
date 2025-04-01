@@ -264,51 +264,60 @@ class _BrowseItemState extends State<BrowseItem> {
 
   // Function to create rows with two items per row
   List<Widget> buildProductRows() {
-  List<Widget> rows = [];
-  for (int i = 0; i < filteredProducts.length; i += 2) {
-    int nextIndex = (i + 1 < filteredProducts.length) ? i + 1 : i; 
+    List<Widget> rows = [];
+    for (int i = 0; i < filteredProducts.length; i += 2) {
+      int nextIndex = (i + 1 < filteredProducts.length) ? i + 1 : i;
 
-    rows.add(
-      Padding(
-        padding: const EdgeInsets.only(bottom: 20), // Space between rows
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Evenly space the boxes
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10), // Add horizontal spacing
-                child: ProductBox(
-                  rating: 4,
-                  imagePath: filteredProducts[i]["image"]!,
-                  modelName: filteredProducts[i]["name"]!,
-                  details: getProductDetails(filteredProducts[i]["name"]!),
-                  price: double.parse(filteredProducts[i]["price"]!.substring(1)),
-                ),
-              ),
-            ),
-            if (i + 1 < filteredProducts.length)
+      rows.add(
+        Padding(
+          padding: const EdgeInsets.only(bottom: 20), // Space between rows
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.spaceEvenly, // Evenly space the boxes
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10), // Add horizontal spacing
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                  ), // Add horizontal spacing
                   child: ProductBox(
                     rating: 4,
-                    imagePath: filteredProducts[nextIndex]["image"]!,
-                    modelName: filteredProducts[nextIndex]["name"]!,
-                    details: getProductDetails(filteredProducts[nextIndex]["name"]!),
-                    price: double.parse(filteredProducts[nextIndex]["price"]!.substring(1)),
+                    imagePath: filteredProducts[i]["image"]!,
+                    modelName: filteredProducts[i]["name"]!,
+                    details: getProductDetails(filteredProducts[i]["name"]!),
+                    price: double.parse(
+                      filteredProducts[i]["price"]!.substring(1),
+                    ),
                   ),
                 ),
               ),
-          ],
+              if (i + 1 < filteredProducts.length)
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                    ), // Add horizontal spacing
+                    child: ProductBox(
+                      rating: 4,
+                      imagePath: filteredProducts[nextIndex]["image"]!,
+                      modelName: filteredProducts[nextIndex]["name"]!,
+                      details: getProductDetails(
+                        filteredProducts[nextIndex]["name"]!,
+                      ),
+                      price: double.parse(
+                        filteredProducts[nextIndex]["price"]!.substring(1),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
+    return rows;
   }
-  return rows;
-}
-
-
   // Function to handle category selection
   void _onCategoryTap(String category) {
     setState(() {
@@ -658,7 +667,7 @@ class ProductBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
+              color: Colors.grey.withOpacity(0.5),
               blurRadius: 10,
               offset: Offset(0, 4),
             ),
