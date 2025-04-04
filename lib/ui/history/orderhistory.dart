@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import '../home/browse.dart'; // Make sure to import BrowseItem
+import '../profile/user_profile.dart'; // Make sure to import UserProfile
 
-
-
-class OrderHistoryScreen extends StatelessWidget {
+class OrderHistoryScreen extends StatefulWidget {
   const OrderHistoryScreen({super.key});
+
+  @override
+  State<OrderHistoryScreen> createState() => _OrderHistoryScreenState();
+}
+
+class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
+  int _currentIndex = 1; // Order is the second tab, so index 1
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,6 @@ class OrderHistoryScreen extends StatelessWidget {
           },
         ),
       ),
-
       body: DefaultTabController(
         length: 2,
         child: Column(
@@ -42,6 +48,44 @@ class OrderHistoryScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Navigate to different pages based on index
+          switch (index) {
+            case 0:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => BrowseItem()),
+              );
+              break;
+            case 1:
+              // Already on order history page
+              break;
+            case 2:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => UserProfile()),
+              );
+              break;
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Order',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
       ),
     );
   }
@@ -175,13 +219,12 @@ class OrderItemCard extends StatelessWidget {
               ),
             ],
             const SizedBox(height: 16),
-            // Fix: Set price text color to red
             Text(
               '\$${order.price.toStringAsFixed(2)}',
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Colors.red, // Make the price red
+                color: Colors.red,
               ),
             ),
             const SizedBox(height: 8),

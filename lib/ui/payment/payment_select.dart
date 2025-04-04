@@ -1,4 +1,4 @@
-import 'package:final_project/payment_success.dart';
+import 'package:final_project/ui/payment/payment_success.dart';
 import 'package:flutter/material.dart';
 
 

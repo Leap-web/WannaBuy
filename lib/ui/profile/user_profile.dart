@@ -1,5 +1,7 @@
-import 'package:final_project/Change_Phone.dart';
+import 'package:final_project/ui/profile/Change_Phone.dart';
 import 'package:flutter/material.dart';
+import '../home/browse.dart';
+import '../history/orderhistory.dart'; // Make sure to import OrderHistoryScreen
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
@@ -9,6 +11,8 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  int _currentIndex = 2; // Profile is the third tab, so index 2
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +25,12 @@ class _UserProfileState extends State<UserProfile> {
           ),
         ],
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => BrowseItem()),
+            );
+          },
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
         ),
         title: const Text(
@@ -90,6 +99,44 @@ class _UserProfileState extends State<UserProfile> {
               ),
             ),
           ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Navigate to different pages based on index
+          switch (index) {
+            case 0:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => BrowseItem()),
+              );
+              break;
+            case 1:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => OrderHistoryScreen()),
+              );
+              break;
+            case 2:
+              // Already on profile page
+              break;
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Order',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'detail.dart';
+import '../profile/user_profile.dart';
+import '../history/orderhistory.dart'; // Make sure this import exists for OrderHistoryScreen
 
 class BrowseItem extends StatefulWidget {
   const BrowseItem({super.key});
@@ -222,8 +224,6 @@ class _BrowseItemState extends State<BrowseItem> {
         "PowerAdapter": "230W Power Adapter",
       },
     },
-
-    // Add other products similarly
   ];
 
   // Filtered products list to display
@@ -231,6 +231,9 @@ class _BrowseItemState extends State<BrowseItem> {
 
   // The selected category (this will track the selected category)
   String selectedCategory = 'All';
+  
+  // Bottom navigation bar index
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -318,6 +321,7 @@ class _BrowseItemState extends State<BrowseItem> {
     }
     return rows;
   }
+
   // Function to handle category selection
   void _onCategoryTap(String category) {
     setState(() {
@@ -373,7 +377,12 @@ class _BrowseItemState extends State<BrowseItem> {
                               size: 50,
                               color: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => UserProfile()),
+                              );
+                            },
                           ),
                           Row(
                             children: [
@@ -460,7 +469,7 @@ class _BrowseItemState extends State<BrowseItem> {
               ),
             ),
 
-            // Ads Container (No change)
+            // Ads Container
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Container(
@@ -522,7 +531,7 @@ class _BrowseItemState extends State<BrowseItem> {
               ),
             ),
 
-            // Categories Row (No change)
+            // Categories Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Row(
@@ -531,30 +540,25 @@ class _BrowseItemState extends State<BrowseItem> {
                   CategoryBox(
                     title: 'All',
                     imagePath: 'assets/images/all.png',
-                    isSelected:
-                        selectedCategory == 'All', // Pass selected state
+                    isSelected: selectedCategory == 'All',
                     onTap: () => _onCategoryTap('All'),
                   ),
                   CategoryBox(
                     title: 'Laptop',
                     imagePath: 'assets/images/laptop.png',
-                    isSelected:
-                        selectedCategory == 'Laptop' ||
-                        selectedCategory == 'Macbook', // Pass selected state
+                    isSelected: selectedCategory == 'Laptop' || selectedCategory == 'Macbook',
                     onTap: () => _onCategoryTap('Laptop'),
                   ),
                   CategoryBox(
                     title: 'Phone',
                     imagePath: 'assets/images/phone.png',
-                    isSelected:
-                        selectedCategory == 'Phone', // Pass selected state
+                    isSelected: selectedCategory == 'Phone',
                     onTap: () => _onCategoryTap('Phone'),
                   ),
                   CategoryBox(
                     title: 'Earphone',
                     imagePath: 'assets/images/earphone.png',
-                    isSelected:
-                        selectedCategory == 'Earphone', // Pass selected state
+                    isSelected: selectedCategory == 'Earphone',
                     onTap: () => _onCategoryTap('Earphone'),
                   ),
                 ],
@@ -565,11 +569,52 @@ class _BrowseItemState extends State<BrowseItem> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
               child: Column(
-                children: buildProductRows(), // Display rows with 2 products
+                children: buildProductRows(),
               ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Navigate to different pages based on index
+          switch (index) {
+            case 0:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => BrowseItem()),
+              );
+              break;
+            case 1:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => OrderHistoryScreen()),
+              );
+              break;
+            case 2:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => UserProfile()),
+              );
+              break;
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Order',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
       ),
     );
   }
@@ -579,29 +624,26 @@ class _BrowseItemState extends State<BrowseItem> {
 class CategoryBox extends StatelessWidget {
   final String title;
   final String imagePath;
-  final bool isSelected; // Add this to check if the category is selected
-  final VoidCallback onTap; // Add this callback for onTap
+  final bool isSelected;
+  final VoidCallback onTap;
 
   const CategoryBox({
     super.key,
     required this.title,
     required this.imagePath,
-    required this.isSelected, // Accept isSelected as a parameter
-    required this.onTap, // Accept onTap callback
+    required this.isSelected,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // Use onTap callback here
+      onTap: onTap,
       child: Container(
         width: 70,
         height: 70,
         decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? Colors.white
-                  : Colors.grey[300], // Change color based on selection
+          color: isSelected ? Colors.white : Colors.grey[300],
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -615,8 +657,7 @@ class CategoryBox extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color:
-                    isSelected ? Colors.black : Colors.black.withOpacity(0.6),
+                color: isSelected ? Colors.black : Colors.black.withOpacity(0.6),
               ),
             ),
           ],
@@ -631,7 +672,7 @@ class ProductBox extends StatelessWidget {
   final String modelName;
   final String imagePath;
   final double price;
-  final Map<String, dynamic> details; // Product details passed
+  final Map<String, dynamic> details;
   final double rating;
 
   const ProductBox({
@@ -639,27 +680,25 @@ class ProductBox extends StatelessWidget {
     required this.modelName,
     required this.imagePath,
     required this.price,
-    required this.details, // Initialize with details
+    required this.details,
     required this.rating,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:
-          () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (context) => Detail(
-                    productName: modelName,
-                    productImage: imagePath,
-                    rating: rating,
-                    price: price,
-                    productDetails: details,
-                  ), // Pass the details here
-            ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Detail(
+            productName: modelName,
+            productImage: imagePath,
+            rating: rating,
+            price: price,
+            productDetails: details,
           ),
+        ),
+      ),
       child: Container(
         width: MediaQuery.of(context).size.width / 2 - 30,
         decoration: BoxDecoration(
@@ -682,8 +721,8 @@ class ProductBox extends StatelessWidget {
               child: Center(
                 child: Image.asset(
                   imagePath,
-                  width: 100, // Adjust the size as needed
-                  height: 100, // Adjust the size as needed
+                  width: 100,
+                  height: 100,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -707,8 +746,6 @@ class ProductBox extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Rating Section
           ],
         ),
       ),

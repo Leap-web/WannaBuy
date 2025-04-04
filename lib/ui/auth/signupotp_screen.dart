@@ -1,4 +1,4 @@
-import 'package:final_project/welcome_screen.dart';
+import 'package:final_project/ui/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 

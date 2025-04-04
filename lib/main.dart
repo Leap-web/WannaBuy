@@ -1,15 +1,5 @@
+import 'package:final_project/ui/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'addtocart.dart';
-import 'package:final_project/detail.dart';
-import 'package:flutter/material.dart';
-import 'browse.dart';
-import 'detail.dart';
-import 'orderhistory.dart';
-import 'package:final_project/welcome_screen.dart';
-import 'package:flutter/material.dart';
-import 'search.dart';
-import 'package:final_project/invoice.dart';
-import 'user_profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -29,9 +20,8 @@ class MyApp extends StatelessWidget {
         fontFamily: "Lato",
         useMaterial3: true,
       ),
-
-      home: UserProfile(),
-
+      // home: ProductDeselectionScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

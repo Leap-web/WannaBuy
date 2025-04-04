@@ -1,21 +1,19 @@
-import 'package:final_project/signupotp_screen.dart';
+import 'package:final_project/ui/auth/forgot_screen.dart';
+import 'package:final_project/ui/auth/signinotp_screen.dart';
+import 'package:final_project/ui/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/signin_screen.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class SigninScreen extends StatefulWidget {
+  const SigninScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SigninScreen> createState() => _SigninScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
-  final TextEditingController _fullNameController = TextEditingController();
+class _SigninScreenState extends State<SigninScreen> {
   final TextEditingController _emailPhoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _retypePasswordController = TextEditingController();
   bool _obscurePassword = true;
-  bool _obscureRetypePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       top: 80.0,
                     ), // Adjust this value for spacing
                     child: const Text(
-                      "LET'S SIGN UP",
+                      "LET'S SIGN IN",
                       style: TextStyle(
                         fontSize: 25, // Set font size
                         fontWeight: FontWeight.bold, // Make the text bold
@@ -58,22 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 200),
-                  TextField(
-                    controller: _fullNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Full Name',
-                      labelStyle: const TextStyle(color: Colors.black),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      prefixIcon: const Icon(Icons.person),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 280),
                   TextField(
                     controller: _emailPhoneController,
                     decoration: InputDecoration(
@@ -117,36 +100,25 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     obscureText: _obscurePassword,
                   ),
-                  const SizedBox(height: 20),
-                  TextField(
-                    controller: _retypePasswordController,
-                    decoration: InputDecoration(
-                      labelText: 'Retype Password',
-                      labelStyle: const TextStyle(color: Colors.black),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      prefixIcon: const Icon(Icons.key),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureRetypePassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureRetypePassword = !_obscureRetypePassword;
-                          });
-                        },
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgotScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Forgot password?',
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
-                    obscureText: _obscureRetypePassword,
                   ),
-                  const SizedBox(height: 60),
-
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       if (_emailPhoneController.text.isEmpty) {
@@ -157,11 +129,12 @@ class _SignupScreenState extends State<SignupScreen> {
                         );
                         return;
                       }
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder:
-                              (context) => SignupotpScreen(
+                              (context) => SigninotpScreen(
                                 emailOrPhone: _emailPhoneController.text,
                               ),
                         ),
@@ -174,7 +147,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       shadowColor: Colors.black,
                     ),
                     child: Text(
-                      'SIGN UP',
+                      'SIGN IN',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
@@ -182,12 +155,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 100),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Already have account?",
+                        "Doesn't have account?",
                         style: TextStyle(color: Colors.black),
                       ),
                       TextButton(
@@ -195,12 +168,12 @@ class _SignupScreenState extends State<SignupScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SigninScreen(),
+                              builder: (context) => SignupScreen(),
                             ),
                           );
                         },
                         child: const Text(
-                          'Sign In',
+                          'Sign Up',
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,

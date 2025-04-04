@@ -1,18 +1,17 @@
-import 'package:final_project/browse.dart';
+import 'package:final_project/ui/auth/reset_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:final_project/browse.dart';
 
-class SigninotpScreen extends StatefulWidget {
+class ForgototpScreen extends StatefulWidget {
   final String emailOrPhone;
 
-  const SigninotpScreen({super.key, required this.emailOrPhone});
+  const ForgototpScreen({super.key, required this.emailOrPhone});
 
   @override
-  State<SigninotpScreen> createState() => _SigninotpScreenState();
+  State<ForgototpScreen> createState() => _ForgototpScreenState();
 }
 
-class _SigninotpScreenState extends State<SigninotpScreen> {
+class _ForgototpScreenState extends State<ForgototpScreen> {
   final List<TextEditingController> _otpControllers = List.generate(
     6,
     (index) => TextEditingController(),
@@ -91,7 +90,7 @@ class _SigninotpScreenState extends State<SigninotpScreen> {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const BrowseItem()),
+      MaterialPageRoute(builder: (context) => const ResetScreen()),
     );
   }
 
@@ -136,7 +135,7 @@ class _SigninotpScreenState extends State<SigninotpScreen> {
                   Padding(
                     padding: const EdgeInsets.only(top: 80.0),
                     child: const Text(
-                      "LET'S SIGN IN",
+                      "LET'S RESET",
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,

@@ -83,7 +83,9 @@ class _AddToCartState extends State<AddToCart> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             padding: EdgeInsets.symmetric(vertical: 15),
           ),
-          onPressed: () {},
+          onPressed: () {
+            
+          },
           child: Text(
             "Proceed to checkout (1 item)",
             style: TextStyle(color: Colors.white),

@@ -1,4 +1,4 @@
-import 'package:final_project/Update_Phone.dart';
+import 'package:final_project/ui/profile/Update_Phone.dart';
 import 'package:flutter/material.dart';
 
 class ChangePhoneNumberScreen extends StatelessWidget {
