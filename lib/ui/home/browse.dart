@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'detail.dart';
+import '../profile/user_profile.dart';
+import '../history/orderhistory.dart'; // Make sure this import exists for OrderHistoryScreen
 
 class BrowseItem extends StatefulWidget {
   const BrowseItem({super.key});
@@ -13,7 +15,7 @@ class _BrowseItemState extends State<BrowseItem> {
   // List of all products
   List<Map<String, String>> allProducts = [
     {
-      "name": "Laptop Pro 2025",
+      "name": "Asus Laptop",
       "price": "\$999",
       "image": "assets/images/laptop.png",
     },
@@ -33,21 +35,31 @@ class _BrowseItemState extends State<BrowseItem> {
       "image": "assets/images/earphone.png",
     },
     {
-      "name": "Dell",
-      "price": "\$1399",
+      "name": "Dell Laptop",
+      "price": "\$1199",
       "image": "assets/images/dell.png",
     },
     {
-      "name": "TUF Gaming F15",
+      "name": "Lenovo Laptop",
       "price": "\$1099",
-      "image": "assets/images/tuf.png",
+      "image": "assets/images/lenovo.png",
+    },
+    {
+      "name": "iPhone 14",
+      "price": "\$999",
+      "image": "assets/images/iphone14.png",
+    },
+    {
+      "name": "Apple AirPods Max",
+      "price": "\$549",
+      "image": "assets/images/airpod.png",
     },
   ];
 
   // Updated allProducts list with details
   List<Map<String, dynamic>> productDetials = [
     {
-      "name": "Laptop Pro 2025",
+      "name": "Asus Laptop",
       "price": "\$999",
       "image": "assets/images/laptop.png",
       "details": {
@@ -87,45 +99,91 @@ class _BrowseItemState extends State<BrowseItem> {
       },
     },
     {
-      "name": "TUF Gaming F15",
-      "price": "\$1,099",
-      "image": "assets/images/tuf_gaming.png",
+      "name": "Apple AirPods Max",
+      "price": "\$549",
+      "image": "assets/images/airpods_max.png",
       "details": {
-        "CPU": "Intel Core i7-12700H",
-        "GPU": "NVIDIA GeForce RTX 3060",
-        "Memory": "16GB DDR4 RAM",
+        "Chip": "Apple H1 chip (per ear cup)",
+        "Audio": "High-fidelity audio with active noise cancellation",
+        "NoiseCancellation": "Active Noise Cancellation & Transparency Mode",
+        "BatteryLife":
+            "Up to 20 hours of listening time with Active Noise Cancellation and spatial audio",
+        "ChargingCase": "Smart Case for battery preservation",
+        "Weight": "384.8 grams",
+        "HeadphoneType": "Over-Ear",
+        "Connectivity": "Bluetooth 5.0",
+        "Microphone":
+            "Nine microphones for noise cancellation and voice pickup",
+        "Controls": "Digital crown for volume control, play/pause, skip tracks",
+        "AudioFormat": "Spatial audio with dynamic head tracking",
+        "ColorOptions": "Space Gray, Silver, Sky Blue, Green, Pink",
+        "AdditionalFeatures":
+            "Automatic switching between devices, Hey Siri functionality",
+      },
+    },
+
+    {
+      "name": "Lenovo Laptop",
+      "price": "\$1799",
+      "image": "assets/images/lenovo_x1_carbon.png",
+      "details": {
+        "CPU": "Intel Core i7-1265U",
+        "GPU": "Intel Iris Xe Graphics",
+        "Memory": "16GB LPDDR5 RAM",
         "Storage": "512GB SSD",
         "NeuralEngine": "N/A",
-        "Display": "15.6-inch Full HD 144Hz",
-        "Camera": "720p HD webcam",
-        "ChargingPort": "USB-C Charging",
-        "USBPorts": "Two USB-A 3.2, One USB-C, One USB 3.2 Type-C",
+        "Display": "14-inch WQXGA (2560 x 1600) IPS display",
+        "Camera": "1080p HD camera with IR",
+        "ChargingPort": "USB-C with Power Delivery",
+        "USBPorts": "Two Thunderbolt 4 ports, One USB 3.2 Type-A",
         "ExternalDisplay": "Supports up to two external displays",
-        "Keyboard": "RGB Backlit Keyboard",
-        "Trackpad": "Precision Trackpad",
-        "PowerAdapter": "200W Power Adapter",
+        "Keyboard": "Backlit keyboard with TrackPoint",
+        "Trackpad": "Precision touchpad with multi-touch support",
+        "PowerAdapter": "65W USB-C Power Adapter",
+      },
+    },
+
+    {
+      "name": "Dell Laptop",
+      "price": "\$1199",
+      "image": "assets/images/dell_xps13.png",
+      "details": {
+        "CPU": "Intel Core i7-1360P",
+        "GPU": "Intel Iris Xe Graphics",
+        "Memory": "16GB LPDDR5 RAM",
+        "Storage": "512GB SSD",
+        "NeuralEngine": "N/A",
+        "Display": "13.4-inch FHD+ (1920 x 1200) InfinityEdge display",
+        "Camera": "720p HD webcam",
+        "ChargingPort": "USB-C charging",
+        "USBPorts": "Two Thunderbolt 4 ports",
+        "ExternalDisplay": "Supports up to two external displays",
+        "Keyboard": "Backlit Keyboard with Fingerprint Reader",
+        "Trackpad": "Precision Glass Touchpad",
+        "PowerAdapter": "45W USB-C Power Adapter",
       },
     },
     {
-      "name": "MacBook Pro M4",
-      "price": "\$1,399",
-      "image": "assets/images/m4.png",
+      "name": "iPhone 14",
+      "price": "\$999",
+      "image": "assets/images/iphone14.png",
       "details": {
-        "CPU": "Apple M4 Chip",
-        "GPU": "10-core GPU",
-        "Memory": "8GB Unified Memory",
-        "Storage": "256GB SSD",
+        "CPU": "A15 Bionic chip",
+        "GPU": "5-core GPU",
+        "Memory": "6GB RAM",
+        "Storage": "128GB / 256GB / 512GB",
         "NeuralEngine": "16-core Neural Engine",
-        "Display": "13.6-inch Liquid Retina display",
-        "Camera": "1080p FaceTime HD camera",
-        "ChargingPort": "MagSafe 3 charging port",
-        "USBPorts": "Two Thunderbolt / USB 4 ports",
-        "ExternalDisplay": "Supports one external display",
-        "Keyboard": "Magic Keyboard with Touch ID",
-        "Trackpad": "Force Touch trackpad",
-        "PowerAdapter": "30W USB-C Power Adapter",
+        "Display": "6.1-inch Super Retina XDR display",
+        "Camera": "12MP Main, 12MP Ultra Wide",
+        "ChargingPort": "Lightning port",
+        "USBPorts": "N/A",
+        "ExternalDisplay": "AirPlay for wireless display",
+        "Keyboard": "N/A (iOS virtual keyboard)",
+        "Trackpad": "N/A (Touchscreen)",
+        "PowerAdapter": "20W USB-C Power Adapter",
       },
     },
+
     {
       "name": "Wireless Headset",
       "price": "\$199",
@@ -166,8 +224,6 @@ class _BrowseItemState extends State<BrowseItem> {
         "PowerAdapter": "230W Power Adapter",
       },
     },
-
-    // Add other products similarly
   ];
 
   // Filtered products list to display
@@ -175,6 +231,9 @@ class _BrowseItemState extends State<BrowseItem> {
 
   // The selected category (this will track the selected category)
   String selectedCategory = 'All';
+  
+  // Bottom navigation bar index
+  int _currentIndex = 0;
 
   @override
   void initState() {
@@ -210,43 +269,48 @@ class _BrowseItemState extends State<BrowseItem> {
   List<Widget> buildProductRows() {
     List<Widget> rows = [];
     for (int i = 0; i < filteredProducts.length; i += 2) {
-      int nextIndex =
-          (i + 1 < filteredProducts.length)
-              ? i + 1
-              : i; // Avoid out-of-bounds error
+      int nextIndex = (i + 1 < filteredProducts.length) ? i + 1 : i;
 
       rows.add(
         Padding(
-          padding: const EdgeInsets.only(bottom: 20), // Adds space between rows
+          padding: const EdgeInsets.only(bottom: 20), // Space between rows
           child: Row(
             mainAxisAlignment:
-                MainAxisAlignment.start, // Align products to start
-            crossAxisAlignment:
-                CrossAxisAlignment.start, // Align items vertically
+                MainAxisAlignment.spaceEvenly, // Evenly space the boxes
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: ProductBox(
-                  rating: 4,
-                  imagePath: filteredProducts[i]["image"]!,
-                  modelName: filteredProducts[i]["name"]!,
-                  details: getProductDetails(filteredProducts[i]["name"]!),
-                  price: double.parse(
-                    filteredProducts[i]["price"]!.substring(1),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                  ), // Add horizontal spacing
+                  child: ProductBox(
+                    rating: 4,
+                    imagePath: filteredProducts[i]["image"]!,
+                    modelName: filteredProducts[i]["name"]!,
+                    details: getProductDetails(filteredProducts[i]["name"]!),
+                    price: double.parse(
+                      filteredProducts[i]["price"]!.substring(1),
+                    ),
                   ),
                 ),
               ),
-              // Check if there is a second item to display
               if (i + 1 < filteredProducts.length)
                 Expanded(
-                  child: ProductBox(
-                    rating: 4,
-                    imagePath: filteredProducts[nextIndex]["image"]!,
-                    modelName: filteredProducts[nextIndex]["name"]!,
-                    details: getProductDetails(
-                      filteredProducts[nextIndex]["name"]!,
-                    ),
-                    price: double.parse(
-                      filteredProducts[nextIndex]["price"]!.substring(1),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                    ), // Add horizontal spacing
+                    child: ProductBox(
+                      rating: 4,
+                      imagePath: filteredProducts[nextIndex]["image"]!,
+                      modelName: filteredProducts[nextIndex]["name"]!,
+                      details: getProductDetails(
+                        filteredProducts[nextIndex]["name"]!,
+                      ),
+                      price: double.parse(
+                        filteredProducts[nextIndex]["price"]!.substring(1),
+                      ),
                     ),
                   ),
                 ),
@@ -274,7 +338,7 @@ class _BrowseItemState extends State<BrowseItem> {
         filteredProducts =
             allProducts.where((product) {
               return product["name"]!.toLowerCase().contains('headset') ||
-                  product["name"]!.toLowerCase().contains('earphone');
+                  product["name"]!.toLowerCase().contains('airpod');
             }).toList();
       } else {
         filteredProducts =
@@ -313,7 +377,12 @@ class _BrowseItemState extends State<BrowseItem> {
                               size: 50,
                               color: Colors.white,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => UserProfile()),
+                              );
+                            },
                           ),
                           Row(
                             children: [
@@ -400,7 +469,7 @@ class _BrowseItemState extends State<BrowseItem> {
               ),
             ),
 
-            // Ads Container (No change)
+            // Ads Container
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Container(
@@ -462,7 +531,7 @@ class _BrowseItemState extends State<BrowseItem> {
               ),
             ),
 
-            // Categories Row (No change)
+            // Categories Row
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Row(
@@ -471,30 +540,25 @@ class _BrowseItemState extends State<BrowseItem> {
                   CategoryBox(
                     title: 'All',
                     imagePath: 'assets/images/all.png',
-                    isSelected:
-                        selectedCategory == 'All', // Pass selected state
+                    isSelected: selectedCategory == 'All',
                     onTap: () => _onCategoryTap('All'),
                   ),
                   CategoryBox(
                     title: 'Laptop',
                     imagePath: 'assets/images/laptop.png',
-                    isSelected:
-                        selectedCategory == 'Laptop' ||
-                        selectedCategory == 'Macbook', // Pass selected state
+                    isSelected: selectedCategory == 'Laptop' || selectedCategory == 'Macbook',
                     onTap: () => _onCategoryTap('Laptop'),
                   ),
                   CategoryBox(
                     title: 'Phone',
                     imagePath: 'assets/images/phone.png',
-                    isSelected:
-                        selectedCategory == 'Phone', // Pass selected state
+                    isSelected: selectedCategory == 'Phone',
                     onTap: () => _onCategoryTap('Phone'),
                   ),
                   CategoryBox(
                     title: 'Earphone',
                     imagePath: 'assets/images/earphone.png',
-                    isSelected:
-                        selectedCategory == 'Earphone', // Pass selected state
+                    isSelected: selectedCategory == 'Earphone',
                     onTap: () => _onCategoryTap('Earphone'),
                   ),
                 ],
@@ -505,11 +569,52 @@ class _BrowseItemState extends State<BrowseItem> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
               child: Column(
-                children: buildProductRows(), // Display rows with 2 products
+                children: buildProductRows(),
               ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+
+          // Navigate to different pages based on index
+          switch (index) {
+            case 0:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => BrowseItem()),
+              );
+              break;
+            case 1:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => OrderHistoryScreen()),
+              );
+              break;
+            case 2:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => UserProfile()),
+              );
+              break;
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Order',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
       ),
     );
   }
@@ -519,29 +624,26 @@ class _BrowseItemState extends State<BrowseItem> {
 class CategoryBox extends StatelessWidget {
   final String title;
   final String imagePath;
-  final bool isSelected; // Add this to check if the category is selected
-  final VoidCallback onTap; // Add this callback for onTap
+  final bool isSelected;
+  final VoidCallback onTap;
 
   const CategoryBox({
     super.key,
     required this.title,
     required this.imagePath,
-    required this.isSelected, // Accept isSelected as a parameter
-    required this.onTap, // Accept onTap callback
+    required this.isSelected,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // Use onTap callback here
+      onTap: onTap,
       child: Container(
         width: 70,
         height: 70,
         decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? Colors.white
-                  : Colors.grey[300], // Change color based on selection
+          color: isSelected ? Colors.white : Colors.grey[300],
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -555,8 +657,7 @@ class CategoryBox extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color:
-                    isSelected ? Colors.black : Colors.black.withOpacity(0.6),
+                color: isSelected ? Colors.black : Colors.black.withOpacity(0.6),
               ),
             ),
           ],
@@ -571,7 +672,7 @@ class ProductBox extends StatelessWidget {
   final String modelName;
   final String imagePath;
   final double price;
-  final Map<String, dynamic> details; // Product details passed
+  final Map<String, dynamic> details;
   final double rating;
 
   const ProductBox({
@@ -579,27 +680,25 @@ class ProductBox extends StatelessWidget {
     required this.modelName,
     required this.imagePath,
     required this.price,
-    required this.details, // Initialize with details
+    required this.details,
     required this.rating,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:
-          () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (context) => Detail(
-                    productName: modelName,
-                    productImage: imagePath,
-                    rating: rating,
-                    price: price,
-                    productDetails: details,
-                  ), // Pass the details here
-            ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Detail(
+            productName: modelName,
+            productImage: imagePath,
+            rating: rating,
+            price: price,
+            productDetails: details,
           ),
+        ),
+      ),
       child: Container(
         width: MediaQuery.of(context).size.width / 2 - 30,
         decoration: BoxDecoration(
@@ -607,7 +706,7 @@ class ProductBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
+              color: Colors.grey.withOpacity(0.5),
               blurRadius: 10,
               offset: Offset(0, 4),
             ),
@@ -622,8 +721,8 @@ class ProductBox extends StatelessWidget {
               child: Center(
                 child: Image.asset(
                   imagePath,
-                  width: 100, // Adjust the size as needed
-                  height: 100, // Adjust the size as needed
+                  width: 100,
+                  height: 100,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -647,8 +746,6 @@ class ProductBox extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Rating Section
           ],
         ),
       ),

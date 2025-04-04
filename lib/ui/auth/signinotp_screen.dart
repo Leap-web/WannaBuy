@@ -1,3 +1,4 @@
+import 'package:final_project/ui/home/browse.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -89,7 +90,7 @@ class _SigninotpScreenState extends State<SigninotpScreen> {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
+      MaterialPageRoute(builder: (context) => const BrowseItem()),
     );
   }
 
@@ -256,18 +257,6 @@ class _SigninotpScreenState extends State<SigninotpScreen> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Welcome')),
-      body: const Center(child: Text('Successfully signed in!')),
     );
   }
 }

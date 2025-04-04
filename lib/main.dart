@@ -1,9 +1,4 @@
-import 'package:final_project/detail.dart';
-import 'package:flutter/material.dart';
-import 'browse.dart';
-import 'detail.dart';
-import 'orderhistory.dart';
-import 'package:final_project/welcome_screen.dart';
+import 'package:final_project/ui/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -24,10 +20,8 @@ class MyApp extends StatelessWidget {
         fontFamily: "Lato",
         useMaterial3: true,
       ),
-      // home: const Infocontact(contactName: "IW"), // Fix: Pass a contact name
-      home: const BrowseItem(),
-      // home: const WelcomeScreen(),
-      
+      // home: ProductDeselectionScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

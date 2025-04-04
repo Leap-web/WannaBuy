@@ -1,21 +1,10 @@
-import 'package:final_project/payment_select.dart';
+import 'package:final_project/ui/home/browse.dart';
+import 'package:final_project/ui/payment/payment_select.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: InvoiceScreen(),
-    );
-  }
-}
-
 class InvoiceScreen extends StatelessWidget {
+  const InvoiceScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,12 +55,7 @@ class InvoiceScreen extends StatelessWidget {
                       _buildInfoRow('Invoice number', '#7011979'),
                       _buildInfoRow('Date', '20/02/2025'),
                       _buildInfoRow('Due Date', '20/02/2025'),
-                      _buildInfoRow(
-                        'Time',
-                        '3:00 PM',
-                        rightLabel: 'Time',
-                        rightValue: '6:00 PM',
-                      ),
+                      _buildInfoRow('Time', '3:00 PM', rightLabel: 'Time', rightValue: '6:00 PM'),
                       _buildDivider(),
                       _buildSectionTitle('Item(s):', 'Price:'),
                       _buildSectionTitle('MSI GF63', '\$999.00'),
@@ -93,22 +77,13 @@ class InvoiceScreen extends StatelessWidget {
                       ),
                       _buildDivider(),
                       _buildInfoRow('Sub-Total:', '\$999.00', isBold: true),
-                      _buildInfoRow(
-                        'Delivery Charge:',
-                        '\$10.00',
-                        isBold: true,
-                      ),
+                      _buildInfoRow('Delivery Charge:', '\$10.00', isBold: true),
                       const SizedBox(height: 10),
-                      _buildInfoRow(
-                        'Total:',
-                        '\$1,009.00',
-                        isBold: true,
-                        fontSize: 20,
-                      ),
+                      _buildInfoRow('Total:', '\$1,009.00', isBold: true, fontSize: 20),
                       const SizedBox(height: 20),
                       _buildPaymentButton(context),
                       const SizedBox(height: 20),
-                      _buildHelpSection(),
+                      _buildHelpSection(context),
                     ],
                   ),
                 ),
@@ -120,14 +95,7 @@ class InvoiceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(
-    String label,
-    String value, {
-    String? rightLabel,
-    String? rightValue,
-    bool isBold = false,
-    double fontSize = 16,
-  }) {
+  Widget _buildInfoRow(String label, String value, {String? rightLabel, String? rightValue, bool isBold = false, double fontSize = 16}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Row(
@@ -164,11 +132,11 @@ class InvoiceScreen extends StatelessWidget {
         children: [
           Text(
             leftText,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           Text(
             rightText,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -185,20 +153,24 @@ class InvoiceScreen extends StatelessWidget {
           );
         },
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-          textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          backgroundColor: Colors.black, // Button background color
+          foregroundColor: Colors.white, // Text color
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        child: Text('Pay Now'),
+        child: const Text('Pay Now'),
       ),
     );
   }
 
-  Widget _buildHelpSection() {
+  Widget _buildHelpSection(BuildContext context) {
     return Center(
       child: TextButton(
-        onPressed: () {},
-        child: Text(
-          'Need Help?',
+        onPressed: () {
+          Navigator.pop(context); // Go back when pressed
+        },
+        child: const Text(
+          'Back?',
           style: TextStyle(color: Colors.blue, fontSize: 16),
         ),
       ),

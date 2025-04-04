@@ -1,4 +1,4 @@
-import 'package:final_project/reset_screen.dart';
+import 'package:final_project/ui/auth/reset_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 

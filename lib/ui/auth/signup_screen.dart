@@ -1,19 +1,21 @@
-import 'package:final_project/forgot_screen.dart';
+import 'package:final_project/ui/auth/signin_screen.dart';
+import 'package:final_project/ui/auth/signupotp_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/signinotp_screen.dart';
-import 'package:final_project/signup_screen.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<SigninScreen> createState() => _SigninScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _SigninScreenState extends State<SigninScreen> {
+class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailPhoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _retypePasswordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _obscureRetypePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       top: 80.0,
                     ), // Adjust this value for spacing
                     child: const Text(
-                      "LET'S SIGN IN",
+                      "LET'S SIGN UP",
                       style: TextStyle(
                         fontSize: 25, // Set font size
                         fontWeight: FontWeight.bold, // Make the text bold
@@ -56,7 +58,22 @@ class _SigninScreenState extends State<SigninScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(height: 280),
+                  const SizedBox(height: 200),
+                  TextField(
+                    controller: _fullNameController,
+                    decoration: InputDecoration(
+                      labelText: 'Full Name',
+                      labelStyle: const TextStyle(color: Colors.black),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      prefixIcon: const Icon(Icons.person),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   TextField(
                     controller: _emailPhoneController,
                     decoration: InputDecoration(
@@ -100,25 +117,36 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     obscureText: _obscurePassword,
                   ),
-                  const SizedBox(height: 10),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForgotScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'Forgot password?',
-                        style: TextStyle(color: Colors.black),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _retypePasswordController,
+                    decoration: InputDecoration(
+                      labelText: 'Retype Password',
+                      labelStyle: const TextStyle(color: Colors.black),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      prefixIcon: const Icon(Icons.key),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureRetypePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureRetypePassword = !_obscureRetypePassword;
+                          });
+                        },
                       ),
                     ),
+                    obscureText: _obscureRetypePassword,
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 60),
+
                   ElevatedButton(
                     onPressed: () {
                       if (_emailPhoneController.text.isEmpty) {
@@ -129,12 +157,11 @@ class _SigninScreenState extends State<SigninScreen> {
                         );
                         return;
                       }
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder:
-                              (context) => SigninotpScreen(
+                              (context) => SignupotpScreen(
                                 emailOrPhone: _emailPhoneController.text,
                               ),
                         ),
@@ -147,7 +174,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       shadowColor: Colors.black,
                     ),
                     child: Text(
-                      'SIGN IN',
+                      'SIGN UP',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,
@@ -155,12 +182,12 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Doesn't have account?",
+                        "Already have account?",
                         style: TextStyle(color: Colors.black),
                       ),
                       TextButton(
@@ -168,12 +195,12 @@ class _SigninScreenState extends State<SigninScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SignupScreen(),
+                              builder: (context) => SigninScreen(),
                             ),
                           );
                         },
                         child: const Text(
-                          'Sign Up',
+                          'Sign In',
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,

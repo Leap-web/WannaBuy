@@ -1,4 +1,4 @@
-import 'package:final_project/transactions.dart';
+import 'package:final_project/ui/payment/transactions.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {

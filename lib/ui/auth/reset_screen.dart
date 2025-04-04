@@ -1,16 +1,21 @@
-import 'package:final_project/forgototp_screen.dart';
+import 'package:final_project/ui/auth/signin_screen.dart';
+import 'package:final_project/ui/auth/signup_screen.dart';
+import 'package:final_project/ui/auth/welcome_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:final_project/signup_screen.dart';
 
-class ForgotScreen extends StatefulWidget {
-  const ForgotScreen({super.key});
+class ResetScreen extends StatefulWidget {
+  const ResetScreen({super.key});
 
   @override
-  State<ForgotScreen> createState() => _ForgotScreenState();
+  State<ResetScreen> createState() => _ResetScreenState();
 }
 
-class _ForgotScreenState extends State<ForgotScreen> {
-  final TextEditingController _emailPhoneController = TextEditingController();
+class _ResetScreenState extends State<ResetScreen> {
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _retypePasswordController =
+      TextEditingController();
+  bool _obscurePassword = true;
+  bool _obscureRetypePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +48,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                       top: 80.0,
                     ), // Adjust this value for spacing
                     child: const Text(
-                      "LET'S  RESET",
+                      "LET'S RESET",
                       style: TextStyle(
                         fontSize: 25, // Set font size
                         fontWeight: FontWeight.bold, // Make the text bold
@@ -55,7 +60,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                   ),
                   const SizedBox(height: 250),
                   const Text(
-                    'Please Input Your Email or Phone Number.',
+                    'Please Enter Your New Password',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
@@ -65,9 +70,9 @@ class _ForgotScreenState extends State<ForgotScreen> {
                   ),
                   const SizedBox(height: 20),
                   TextField(
-                    controller: _emailPhoneController,
+                    controller: _passwordController,
                     decoration: InputDecoration(
-                      labelText: 'Phone or Email',
+                      labelText: 'Password',
                       labelStyle: TextStyle(color: Colors.black),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
@@ -75,30 +80,75 @@ class _ForgotScreenState extends State<ForgotScreen> {
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                       ),
-                      prefixIcon: Icon(Icons.mail),
+                      prefixIcon: const Icon(Icons.key),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
+                      ),
                     ),
-                    keyboardType: TextInputType.emailAddress,
+                    obscureText: _obscurePassword,
                   ),
-
-                  const SizedBox(height: 60),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (_emailPhoneController.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Please enter email or phone number'),
+                  const SizedBox(height: 10),
+                  TextField(
+                    controller: _retypePasswordController,
+                    decoration: InputDecoration(
+                      labelText: 'Retype Password',
+                      labelStyle: const TextStyle(color: Colors.black),
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
+                      ),
+                      prefixIcon: const Icon(Icons.key),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureRetypePassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureRetypePassword = !_obscureRetypePassword;
+                          });
+                        },
+                      ),
+                    ),
+                    obscureText: _obscureRetypePassword,
+                  ),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SigninScreen(),
                           ),
                         );
-                        return;
-                      }
-
+                      },
+                      child: const Text(
+                        'back to login',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (context) => ForgototpScreen(
-                                emailOrPhone: _emailPhoneController.text,
-                              ),
+                          builder: (context) => WelcomeScreen(),
                         ),
                       );
                     },
@@ -117,7 +167,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 150),
+                  const SizedBox(height: 100),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -31,11 +30,9 @@ class TransactionDetailsPage extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-
           Column(
             children: [
               const SizedBox(height: 100),
-
               const Center(
                 child: Column(
                   children: [
@@ -58,7 +55,6 @@ class TransactionDetailsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -67,15 +63,10 @@ class TransactionDetailsPage extends StatelessWidget {
                     children: [
                       _buildDetailRow('Transaction number', '#7011979'),
                       const Divider(thickness: 2, color: Colors.black),
-
                       _buildDetailRow('Reference Number', '54384894'),
-
-                      _buildDetailRow('Source of funds', 'John the ripper'),
-
+                      _buildDetailRow('Source of funds', 'John the Ripper'),
                       _buildDetailRow('Destination number', '45761251551'),
-
                       _buildDetailRow('Recipient', 'T. Jonathan'),
-
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child: Text(
@@ -85,7 +76,6 @@ class TransactionDetailsPage extends StatelessWidget {
                       ),
                       const Text('Please! Be careful with my items'),
                       const Divider(height: 40, thickness: 1),
-
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -106,22 +96,27 @@ class TransactionDetailsPage extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 30),
-
                       ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black, // Button color
+                          foregroundColor: Colors.white, // Text color
                           minimumSize: const Size(double.infinity, 50),
                         ),
                         child: const Text('Download Transaction'),
                       ),
                       const SizedBox(height: 20),
-
-                      const Center(
-                        child: Text(
-                          'Do you need some help?',
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 16,
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            'Back?',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
                       ),
