@@ -58,7 +58,7 @@ class TransactionDetailsPage extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(folder
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildDetailRow('Transaction number', '#7011979'),
